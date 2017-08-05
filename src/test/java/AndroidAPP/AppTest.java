@@ -23,37 +23,42 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 
-public class AppTest
+public class AppTest extends basics
 {
 
+
+	AndroidDriver driver;
 	@BeforeSuite
-	public AndroidDriver setcapabilities() throws InterruptedException, IOException {
+public  void checkapp() throws InterruptedException, IOException {
+		
+		
+		// TODO Auto-generated method stub
 	
 		
-		Runtime.getRuntime().exec("cmd /c start C:\\appiumstart.bat");
-		Thread.sleep(150000L);
-		
-		File appDir = new File("src");
-		   
-		File app = new File(appDir, "ApiDemos-debug.apk");
-
-		DesiredCapabilities cap=new DesiredCapabilities();
-		cap.setCapability(MobileCapabilityType.PLATFORM_NAME,MobilePlatform.ANDROID);
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "zy2233369c");
-		
-		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "100");
-		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
-		AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),cap );
-		
- System.out.println("Device Found");
-		 
-		
-		 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		 driver=setcapabilities();
+     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+     System.out.println("wait for 10 sec");
+     Thread.sleep(10000L);
+  //xpath id className, androidUIautomator
+     /*    xpath Syntax
+      *    //tagName[@attribute='value']
     
-		 System.out.println("Appium SetUp for Android is successful and Appium Driver is launched successfully");
-		
-	return driver;
+      * 
+      */
 	}
+	@Test
+	public  void checkappnew() throws InterruptedException, IOException {
+		
+     driver.findElementByXPath("//android.widget.TextView[@text='Preference']").click();
+     System.out.println("preference clicked");
+     driver.findElementByXPath("//android.widget.TextView[@text='3. Preference dependencies']").click();
+     driver.findElementById("android:id/checkbox").click();
+     driver.findElementByXPath("(//android.widget.RelativeLayout)[2]").click();
+     driver.findElementByClassName("android.widget.EditText").sendKeys("hello");
+     driver.findElementsByClassName("android.widget.Button").get(1).click();
+    
+	}
+
 
 
 	}
