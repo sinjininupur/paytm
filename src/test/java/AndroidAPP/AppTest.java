@@ -13,14 +13,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-
-
-
-
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -28,57 +26,33 @@ import org.testng.annotations.Test;
 public class AppTest
 {
 
-	@Test
-	public void test() throws InterruptedException, IOException {
+	@BeforeSuite
+	public AndroidDriver setcapabilities() throws InterruptedException, IOException {
 	
+		
+		Runtime.getRuntime().exec("cmd /c start C:\\appiumstart.bat");
+		Thread.sleep(150000L);
+		
 		File appDir = new File("src");
 		   
-		    File app = new File(appDir, "net.one97.paytm-3.apk");
+		File app = new File(appDir, "ApiDemos-debug.apk");
 
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability(MobileCapabilityType.PLATFORM_NAME,MobilePlatform.ANDROID);
-		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "Android Emulator");
+		cap.setCapability(MobileCapabilityType.DEVICE_NAME, "zy2233369c");
 		
 		cap.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, "100");
 		cap.setCapability(MobileCapabilityType.APP, app.getAbsolutePath());
 		AndroidDriver driver=new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),cap );
-		Thread.sleep(15000L);
-		try
-		{
-			driver.swipe(25, 40, 30, 30, 5000);
-		}
-		catch(Exception e)
-		{
-			
-		}
-	
-		driver.findElementById("net.one97.paytm:id/edit_no").sendKeys("98454");
-		Thread.sleep(3000L);
 		
-		driver.findElementById("net.one97.paytm:id/text_mob_op").click();
-		driver.scrollTo("Vodafone").click();
-		driver.scrollTo("Kerala").click();
+ System.out.println("Device Found");
+		 
 		
-driver.findElementById("net.one97.paytm:id/lyt_edit_amount").sendKeys("500");
-driver.findElementById("net.one97.paytm:id/radio_postpaid").click();
-Thread.sleep(3000L);
-System.out.println(driver.findElementByClassName("android.widget.Button").getText());
-driver.findElementByClassName("android.widget.CheckBox").click();
-System.out.println(driver.findElementByClassName("android.widget.Button").getText());
-driver.findElementByClassName("android.widget.Button").click();
-System.out.println(driver.findElementById("android:id/message").getText());
-
-
-
-//checkboxes radiobuttons testboxes buttons scolalble Menu,child menu, Image Banners popuu txt
-
-
-
-
-
-	
-	
-	
+		 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    
+		 System.out.println("Appium SetUp for Android is successful and Appium Driver is launched successfully");
+		
+	return driver;
 	}
 
 

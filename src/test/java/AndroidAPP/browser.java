@@ -11,8 +11,8 @@ public class browser {
 	@BeforeSuite
 	public void browse() throws IOException, InterruptedException
 	{
-		Runtime.getRuntime().exec("cmd /c start C:\\appiumstart.bat");
-		Thread.sleep(7000L);
+		//Runtime.getRuntime().exec("cmd /c start C:\\appiumstart.bat");
+		//Thread.sleep(7000L);
 	}
 
 }
