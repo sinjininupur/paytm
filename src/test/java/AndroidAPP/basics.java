@@ -25,6 +25,7 @@ public AndroidDriver setcapabilities() throws InterruptedException, IOException 
 		Runtime.getRuntime().exec("cmd /c start C:\\appium.bat");
 		Thread.sleep(150000L);
 		
+		
 		File appDir = new File("src");
 		   
 		File app = new File(appDir, "ApiDemos-debug.apk");
