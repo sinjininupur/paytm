@@ -23,7 +23,7 @@ public AndroidDriver setcapabilities() throws InterruptedException, IOException 
 	
 		
 		Runtime.getRuntime().exec("cmd /c start C:\\appium.bat");
-		Thread.sleep(10000L);
+		Thread.sleep(150000L);
 		
 		File appDir = new File("src");
 		   
