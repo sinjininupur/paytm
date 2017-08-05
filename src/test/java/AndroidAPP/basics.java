@@ -1,0 +1,41 @@
+package AndroidAPP;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.remote.MobileCapabilityType;
+
+
+public class basics extends AppTest{
+@Test
+public  void checkapp() throws InterruptedException, IOException {
+		// TODO Auto-generated method stub
+	
+		
+		AndroidDriver driver=setcapabilities();
+     driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+     
+  //xpath id className, androidUIautomator
+     /*    xpath Syntax
+      *    //tagName[@attribute='value']
+    
+      * 
+      */
+     driver.findElementByXPath("//android.widget.TextView[@text='Preference']").click();
+     driver.findElementByXPath("//android.widget.TextView[@text='3. Preference dependencies']").click();
+     driver.findElementById("android:id/checkbox").click();
+     driver.findElementByXPath("(//android.widget.RelativeLayout)[2]").click();
+     driver.findElementByClassName("android.widget.EditText").sendKeys("hello");
+     driver.findElementsByClassName("android.widget.Button").get(1).click();
+    
+	}
+
+}
